@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head', { title: typeof title !== 'undefined' ? title : 'Watched — CineVault' }) %>
+</head>
+<body>
+  <div class="sprocket-rail sprocket-rail--left" aria-hidden="true"></div>
+  <div class="sprocket-rail sprocket-rail--right" aria-hidden="true"></div>
+
+  <div class="page">
+    <%- include('../partials/header', { activePage: 'watched', user: typeof user !== 'undefined' ? user : null }) %>
+
+    <main class="section-main">
+      <div class="page-heading">
+        <h1>Watched</h1>
+      </div>
+
+      <% if (typeof movies !== 'undefined' && movies.length > 0) { %>
+        <div class="movie-grid">
+          <% movies.forEach(function(movie) { %>
+            <%- include('../partials/movie-card', { movie: movie }) %>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <div class="empty-state">
+          <h2>Nothing marked watched yet</h2>
+          <p>Movies you mark as watched will show up here, most recent first.</p>
+          <a href="/movies" class="btn btn--primary">Browse your library</a>
+        </div>
+      <% } %>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </div>
+</body>
+</html>

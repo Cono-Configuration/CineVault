@@ -1,0 +1,95 @@
+<article class="movie-card">
+
+  <div class="movie-card__poster" aria-hidden="true">
+
+    <% if (movie.poster && movie.poster !=="N/A" ) { %>
+      <img src="<%= movie.poster %>" alt="<%= movie.title %>" class="movie-card__poster-img">
+      <% } %>
+
+        <span class="movie-card__year">
+          <%= movie.year %>
+        </span>
+
+  </div>
+
+
+  <div class="movie-card__body">
+
+    <h3 class="movie-card__title">
+      <a href="/movies/<%= movie.id %>">
+        <%= movie.title %>
+      </a>
+    </h3>
+
+
+    <p class="movie-card__meta">
+      <%= movie.director %> &middot; <%= movie.genre %>
+    </p>
+
+
+    <div class="movie-card__badges">
+
+      <% if (movie.watched) { %>
+        <span class="badge badge--watched">
+          Watched
+        </span>
+        <% } %>
+
+
+          <% if (movie.favorite) { %>
+            <span class="badge badge--favorite">
+              Favorite
+            </span>
+            <% } %>
+
+
+              <% if (movie.watchlist) { %>
+                <span class="badge badge--watchlist">
+                  Watchlist
+                </span>
+                <% } %>
+
+
+                  <% if (movie.imdbRating) { %>
+                    <span class="badge badge--rating">
+                      ⭐ <%= movie.imdbRating %>/10
+                    </span>
+                    <% } %>
+
+    </div>
+
+
+
+    <div class="movie-card__actions">
+
+
+
+
+      <form action="/movies/<%= movie.id %>/toggle-watched" method="POST" class="inline-form">
+        <button type="submit" class="link-action">
+          <%= movie.watched ? "Mark Unwatched" : "Mark Watched" %>
+        </button>
+      </form>
+
+
+
+      <form action="/movies/<%= movie.id %>/toggle-favorite" method="POST" class="inline-form">
+        <button type="submit" class="link-action">
+          <%= movie.favorite ? "Unfavorite" : "Favorite" %>
+        </button>
+      </form>
+
+
+
+      <form action="/movies/<%= movie.id %>/toggle-watchlist" method="POST" class="inline-form">
+        <button type="submit" class="link-action">
+          <%= movie.watchlist ? "Remove from Watchlist" : "Add to Watchlist" %>
+        </button>
+      </form>
+
+
+    </div>
+
+  </div>
+
+</article>

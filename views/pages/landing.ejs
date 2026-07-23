@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head', { title: typeof title !=='undefined' ? title : 'CineVault — Keep what you watch' }) %>
+</head>
+
+<body>
+  <div class="sprocket-rail sprocket-rail--left" aria-hidden="true"></div>
+  <div class="sprocket-rail sprocket-rail--right" aria-hidden="true"></div>
+
+  <div class="page">
+    <%- include('../partials/header', { activePage: 'landing' }) %>
+
+      <main>
+        <section class="hero">
+          <div class="hero__copy">
+            <p class="eyebrow">Est. for people who forget what they meant to watch</p>
+            <h1 class="hero__headline">
+              Every film you've<br>
+              watched, wanted,<br>
+              and won't admit<br>
+              to loving.
+            </h1>
+            <p class="hero__sub">
+              CineVault is where your watch history stops disappearing into someone else's algorithm. Log it, rate it,
+              shelve it — and actually find it again in three years.
+            </p>
+            <div class="hero__actions">
+              <a href="/dashboard" class="btn btn--primary">Start your vault</a>
+              <a href="#how" class="btn btn--ghost">See how it works</a>
+            </div>
+          </div>
+
+          <div class="hero__visual" aria-hidden="true">
+            <div class="reel">
+              <div class="reel__hub"></div>
+              <div class="reel__spoke reel__spoke--1"></div>
+              <div class="reel__spoke reel__spoke--2"></div>
+              <div class="reel__spoke reel__spoke--3"></div>
+            </div>
+            <div class="filmstrip">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="catalog" id="catalog">
+          <p class="section-tag">The vault holds four things</p>
+          <div class="catalog__grid">
+            <article class="reel-card">
+              <span class="reel-card__code">TRACK&nbsp;A</span>
+              <h3>Catalog everything</h3>
+              <p>Add a title once and it's yours for good — no expiring history, no platform lock-in.</p>
+            </article>
+            <article class="reel-card">
+              <span class="reel-card__code">TRACK&nbsp;B</span>
+              <h3>Rate without pressure</h3>
+              <p>A five-reel scale, private by default. Rate the film you saw, not the one you think you should've
+                liked.</p>
+            </article>
+            <article class="reel-card">
+              <span class="reel-card__code">TRACK&nbsp;C</span>
+              <h3>Shelve what's next</h3>
+              <p>Keep a running queue sorted by mood, runtime, or who recommended it — not by what's trending this week.
+              </p>
+            </article>
+            <article class="reel-card">
+              <span class="reel-card__code">TRACK&nbsp;D</span>
+              <h3>Rediscover on this day</h3>
+              <p>CineVault surfaces what you watched on this date in past years. Your own archive, resurfacing itself.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="how" id="how">
+          <p class="section-tag">How it works</p>
+          <ol class="how__list">
+            <li>
+              <span class="how__mark">01</span>
+              <div>
+                <h4>Log a title</h4>
+                <p>Add a movie with a title, director, year, and genre. You add the opinion.</p>
+              </div>
+            </li>
+            <li>
+              <span class="how__mark">02</span>
+              <div>
+                <h4>File it in a reel</h4>
+                <p>Watched, watching, or waiting. Every title lives in exactly one shelf, so your vault stays honest.
+                </p>
+              </div>
+            </li>
+            <li>
+              <span class="how__mark">03</span>
+              <div>
+                <h4>Let it accumulate</h4>
+                <p>Come back in a year and CineVault hands you the shape of your own taste — no scrolling required.</p>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <section class="cta" id="start">
+          <h2>Your watch history is worth keeping.</h2>
+          <p>Free to start. No streaming service required — CineVault is the shelf, not the screen.</p>
+          <a href="/signup" class="btn btn--primary">Add your first movie</a>
+        </section>
+      </main>
+
+      <%- include('../partials/footer') %>
+  </div>
+</body>
+
+</html>

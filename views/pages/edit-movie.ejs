@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head', { title: typeof title !== 'undefined' ? title : 'Edit Movie — CineVault' }) %>
+</head>
+<body>
+  <div class="sprocket-rail sprocket-rail--left" aria-hidden="true"></div>
+  <div class="sprocket-rail sprocket-rail--right" aria-hidden="true"></div>
+
+  <div class="page">
+    <%- include('../partials/header', { activePage: 'movies' }) %>
+
+    <main class="section-main section-main--narrow">
+      <div class="page-heading">
+        <h1>Edit movie</h1>
+      </div>
+
+      <% var errs = typeof errors !== 'undefined' ? errors : {}; %>
+
+      <form action="/movies/<%= movie.id %>" method="POST" class="movie-form">
+
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" value="<%= movie.title %>" required>
+        <% if (errs.title) { %><p class="form-error"><%= errs.title %></p><% } %>
+
+        <label for="director">Director</label>
+        <input type="text" id="director" name="director" value="<%= movie.director %>">
+        <% if (errs.director) { %><p class="form-error"><%= errs.director %></p><% } %>
+
+        <div class="form-row">
+          <div>
+            <label for="year">Year</label>
+            <input type="number" id="year" name="year" value="<%= movie.year %>" min="1888" max="2100">
+            <% if (errs.year) { %><p class="form-error"><%= errs.year %></p><% } %>
+          </div>
+
+          <div>
+            <label for="genre">Genre</label>
+            <input type="text" id="genre" name="genre" value="<%= movie.genre %>">
+            <% if (errs.genre) { %><p class="form-error"><%= errs.genre %></p><% } %>
+          </div>
+        </div>
+
+        <label for="rating">Rating (1–5)</label>
+        <input type="number" id="rating" name="rating" value="<%= movie.rating || '' %>" min="1" max="5">
+        <% if (errs.rating) { %><p class="form-error"><%= errs.rating %></p><% } %>
+
+        <label for="review">Review</label>
+        <textarea id="review" name="review" rows="4"><%= movie.review || '' %></textarea>
+
+        <label for="watchDate">Watch date</label>
+        <input type="date" id="watchDate" name="watchDate" value="<%= movie.watchDate || '' %>">
+
+        <div class="form-checks">
+          <label class="checkbox-label">
+            <input type="checkbox" name="watched" value="true" <%= movie.watched ? 'checked' : '' %>>
+            Watched
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="favorite" value="true" <%= movie.favorite ? 'checked' : '' %>>
+            Favorite
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="inWatchlist" value="true" <%= movie.inWatchlist ? 'checked' : '' %>>
+            Add to watchlist
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn--primary">Save changes</button>
+          <a href="/movies/<%= movie.id %>" class="btn btn--ghost">Cancel</a>
+        </div>
+      </form>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </div>
+</body>
+</html>

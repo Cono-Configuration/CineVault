@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head', { title: typeof title !=='undefined' ? title : 'Statistics — CineVault' }) %>
+</head>
+
+<body>
+  <div class="sprocket-rail sprocket-rail--left" aria-hidden="true"></div>
+  <div class="sprocket-rail sprocket-rail--right" aria-hidden="true"></div>
+
+  <div class="page">
+    <%- include('../partials/header', { activePage: 'statistics' }) %>
+
+      <main class="section-main">
+        <div class="page-heading">
+          <h1>Statistics</h1>
+        </div>
+
+        <% var s=typeof stats !=='undefined' ? stats : {}; %>
+          <div class="stat-grid">
+            <div class="stat-card">
+              <span class="stat-card__value">
+                <%= s.totalMovies || 0 %>
+              </span>
+              <span class="stat-card__label">Total movies</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__value">
+                <%= s.totalMovies || 0 %>
+              </span>
+              <span class="stat-card__label">Watched movies</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__value">
+                <%= s.averageRating || '—' %>
+              </span>
+              <span class="stat-card__label">Average rating</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__value">
+                <%= s.highestRatedMovie || '—' %>
+              </span>
+              <span class="stat-card__label">Highest rated</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__value">
+                <%= s.favoriteGenre || '—' %>
+              </span>
+              <span class="stat-card__label">Favorite genre</span>
+            </div>
+          </div>
+
+          <section class="dashboard-section">
+            <p class="section-tag">Movies per year</p>
+            <% if (typeof s.moviesPerYear !=='undefined' && Object.keys(s.moviesPerYear).length> 0) { %>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Movies</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% Object.keys(s.moviesPerYear).sort().reverse().forEach(function(year) { %>
+                    <tr>
+                      <td>
+                        <%= year %>
+                      </td>
+                      <td>
+                        <%= s.moviesPerYear[year] %>
+                      </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+              </table>
+              <% } else { %>
+                <div class="empty-state empty-state--compact">
+                  <p>Not enough data yet. Add and watch a few movies first.</p>
+                </div>
+                <% } %>
+          </section>
+      </main>
+
+      <%- include('../partials/footer') %>
+  </div>
+</body>
+
+</html>

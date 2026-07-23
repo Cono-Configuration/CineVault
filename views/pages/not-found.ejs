@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head', { title: 'Not found — CineVault' }) %>
+</head>
+<body>
+  <div class="sprocket-rail sprocket-rail--left" aria-hidden="true"></div>
+  <div class="sprocket-rail sprocket-rail--right" aria-hidden="true"></div>
+
+  <div class="page">
+    <%- include('../partials/header') %>
+
+    <main class="section-main section-main--narrow">
+      <div class="empty-state">
+        <p class="eyebrow">404</p>
+        <h2>This reel is missing</h2>
+        <p>The page you're looking for isn't in the vault. It may have been moved or never existed.</p>
+        <a href="/" class="btn btn--primary">Back to home</a>
+      </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </div>
+</body>
+</html>

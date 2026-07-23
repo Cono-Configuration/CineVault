@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head', { title: typeof title !=='undefined' ? title : 'Movies — CineVault' }) %>
+</head>
+
+<body>
+  <div class="sprocket-rail sprocket-rail--left" aria-hidden="true"></div>
+  <div class="sprocket-rail sprocket-rail--right" aria-hidden="true"></div>
+
+  <div class="page">
+    <%- include('../partials/header', { activePage: 'movies' }) %>
+
+      <main class="section-main">
+
+        <div class="page-heading">
+          <h1>Movies</h1>
+        </div>
+
+        <form action="/movies" method="GET" class="toolbar">
+          <input type="text" name="search" placeholder="Search movies..." value="<%= search || '' %>"
+            aria-label="Search movies">
+
+          <button type="submit" class="btn btn--primary">
+            Search
+          </button>
+        </form>
+
+        <% if (movies && movies.length> 0) { %>
+
+          <div class="movie-grid">
+
+            <% movies.forEach(function(movie){ %>
+
+              <article class="movie-card">
+
+                <div class="movie-card__poster">
+
+                  <% if(movie.Poster && movie.Poster !=="N/A" ){ %>
+
+                    <img src="<%= movie.Poster %>" alt="<%= movie.Title %>" class="movie-card__poster-img">
+
+                    <% } %>
+
+                      <span class="movie-card__year">
+                        <%= movie.Year %>
+                      </span>
+
+                </div>
+
+                <div class="movie-card__body">
+
+                  <h3 class="movie-card__title">
+                    <%= movie.Title %>
+                  </h3>
+
+                  <p class="movie-card__meta">
+                    <%= movie.Type %>
+                  </p>
+
+                  <form action="/movies/add" method="POST">
+
+                    <input type="hidden" name="imdbID" value="<%= movie.imdbID %>">
+
+                    <% if (movie.added) { %>
+                      <button disabled class="btn btn--success">
+                        ✓ Added
+                      </button>
+                      <% } else { %>
+                        <button class="btn btn--primary">
+                          Add to Library
+                        </button>
+                        <% } %>
+
+                  </form>
+
+                </div>
+
+              </article>
+
+              <% }) %>
+
+          </div>
+
+          <% } else if (search) { %>
+
+            <div class="empty-state">
+              <h2>No Results</h2>
+              <p>No movies found for "<%= search %>".</p>
+            </div>
+
+            <% } else { %>
+
+              <div class="empty-state">
+                <h2>Search for a Movie</h2>
+                <p>Search any movie from OMDb and add it to your CineVault.</p>
+              </div>
+
+              <% } %>
+
+      </main>
+
+      <%- include('../partials/footer') %>
+
+  </div>
+
+</body>
+
+</html>

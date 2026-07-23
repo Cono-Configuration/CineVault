@@ -1,0 +1,40 @@
+<header class="site-header">
+  <a href="/" class="wordmark">
+    <span class="wordmark__reel" aria-hidden="true">
+      <svg viewBox="0 0 32 32" width="26" height="26">
+        <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="2" />
+        <circle cx="16" cy="16" r="3" fill="currentColor" />
+        <circle cx="16" cy="7" r="2.4" fill="currentColor" />
+        <circle cx="24" cy="20" r="2.4" fill="currentColor" />
+        <circle cx="8" cy="20" r="2.4" fill="currentColor" />
+      </svg>
+    </span>
+    CineVault
+  </a>
+  <nav class="site-nav">
+    <a href="/dashboard"
+      class="<%= typeof activePage !== 'undefined' && activePage === 'dashboard' ? 'is-active' : '' %>">Dashboard</a>
+    <a href="/movies"
+      class="<%= typeof activePage !== 'undefined' && activePage === 'movies' ? 'is-active' : '' %>">Movies</a>
+    <a href="/watched"
+      class="<%= typeof activePage !== 'undefined' && activePage === 'watched' ? 'is-active' : '' %>">Library</a>
+    <a href="/watchlist"
+      class="<%= typeof activePage !== 'undefined' && activePage === 'watchlist' ? 'is-active' : '' %>">Watchlist</a>
+    <a href="/favorites"
+      class="<%= typeof activePage !== 'undefined' && activePage === 'favorites' ? 'is-active' : '' %>">Favorites</a>
+    <a href="/statistics"
+      class="<%= typeof activePage !== 'undefined' && activePage === 'statistics' ? 'is-active' : '' %>">Stats</a>
+
+    <% if (typeof user !=='undefined' && user) { %>
+      <span class="site-nav__user">
+        <%= user.username %>
+      </span>
+      <form action="/logout" method="POST" class="inline-form">
+        <button type="submit" class="link-action">Log out</button>
+      </form>
+      <% } else { %>
+        <a href="/login">Log in</a>
+        <a href="/signup" class="site-nav__cta">Sign up</a>
+        <% } %>
+  </nav>
+</header>

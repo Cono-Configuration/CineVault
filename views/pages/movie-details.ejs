@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head', { title: typeof title !== 'undefined' ? title : (movie ? movie.title + ' — CineVault' : 'Movie — CineVault') }) %>
+</head>
+<body>
+  <div class="sprocket-rail sprocket-rail--left" aria-hidden="true"></div>
+  <div class="sprocket-rail sprocket-rail--right" aria-hidden="true"></div>
+
+  <div class="page">
+    <%- include('../partials/header', { activePage: 'movies' }) %>
+
+    <main class="section-main section-main--narrow">
+      <div class="detail-header">
+        <p class="eyebrow"><%= movie.genre %> &middot; <%= movie.year %></p>
+        <h1><%= movie.title %></h1>
+        <p class="detail-director">Directed by <%= movie.director %></p>
+
+        <div class="movie-card__badges">
+          <% if (movie.watched) { %><span class="badge badge--watched">Watched</span><% } %>
+          <% if (movie.favorite) { %><span class="badge badge--favorite">Favorite</span><% } %>
+          <% if (movie.inWatchlist) { %><span class="badge badge--watchlist">Watchlist</span><% } %>
+          <% if (movie.rating) { %><span class="badge badge--rating"><%= movie.rating %>/5</span><% } %>
+        </div>
+      </div>
+
+      <% if (movie.watchDate) { %>
+        <p class="detail-meta">Watched on <%= movie.watchDate %></p>
+      <% } %>
+
+      <% if (movie.review) { %>
+        <div class="detail-review">
+          <h3>Review</h3>
+          <p><%= movie.review %></p>
+        </div>
+      <% } %>
+
+      <div class="form-actions">
+        <a href="/movies/<%= movie.id %>/edit" class="btn btn--ghost">Edit</a>
+
+        <form action="/movies/<%= movie.id %>/toggle-watched" method="POST" class="inline-form">
+          <button type="submit" class="btn btn--ghost"><%= movie.watched ? 'Mark unwatched' : 'Mark watched' %></button>
+        </form>
+
+        <form action="/movies/<%= movie.id %>/toggle-favorite" method="POST" class="inline-form">
+          <button type="submit" class="btn btn--ghost"><%= movie.favorite ? 'Unfavorite' : 'Favorite' %></button>
+        </form>
+
+        <form action="/movies/<%= movie.id %>/toggle-watchlist" method="POST" class="inline-form">
+          <button type="submit" class="btn btn--ghost"><%= movie.inWatchlist ? 'Remove from watchlist' : 'Add to watchlist' %></button>
+        </form>
+
+        <form action="/movies/<%= movie.id %>/delete" method="POST" class="inline-form" onsubmit="return false;">
+          <button type="submit" class="btn btn--danger">Delete</button>
+        </form>
+      </div>
+
+      <a href="/movies" class="back-link">&larr; Back to movies</a>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </div>
+</body>
+</html>

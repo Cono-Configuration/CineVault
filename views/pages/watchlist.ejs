@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head', { title: typeof title !== 'undefined' ? title : 'Watchlist — CineVault' }) %>
+</head>
+<body>
+  <div class="sprocket-rail sprocket-rail--left" aria-hidden="true"></div>
+  <div class="sprocket-rail sprocket-rail--right" aria-hidden="true"></div>
+
+  <div class="page">
+    <%- include('../partials/header', { activePage: 'watchlist' }) %>
+
+    <main class="section-main">
+      <div class="page-heading">
+        <h1>Watchlist</h1>
+      </div>
+
+      <% if (typeof movies !== 'undefined' && movies.length > 0) { %>
+        <div class="movie-grid">
+          <% movies.forEach(function(movie) { %>
+            <%- include('../partials/movie-card', { movie: movie }) %>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <div class="empty-state">
+          <h2>Nothing queued up</h2>
+          <p>Add a movie to your watchlist and it'll show up here.</p>
+          <a href="/movies" class="btn btn--primary">Browse movies</a>
+        </div>
+      <% } %>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head', { title: typeof title !== 'undefined' ? title : 'Dashboard — CineVault' }) %>
+</head>
+<body>
+  <div class="sprocket-rail sprocket-rail--left" aria-hidden="true"></div>
+  <div class="sprocket-rail sprocket-rail--right" aria-hidden="true"></div>
+
+  <div class="page">
+    <%- include('../partials/header', { activePage: 'dashboard' }) %>
+
+    <main class="section-main">
+      <div class="page-heading">
+        <h1>Dashboard</h1>
+      </div>
+
+      <% var s = typeof stats !== 'undefined' ? stats : {}; %>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-card__value"><%= s.watchedCount || 0 %></span>
+          <span class="stat-card__label">Movies watched</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__value"><%= s.favoriteCount || 0 %></span>
+          <span class="stat-card__label">Favorites</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__value"><%= s.watchlistCount || 0 %></span>
+          <span class="stat-card__label">On watchlist</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__value"><%= s.averageRating || '—' %></span>
+          <span class="stat-card__label">Average rating</span>
+        </div>
+      </div>
+
+      <section class="dashboard-section">
+        <p class="section-tag">Recently watched</p>
+        <% if (typeof recentlyWatched !== 'undefined' && recentlyWatched.length > 0) { %>
+          <div class="movie-grid">
+            <% recentlyWatched.forEach(function(movie) { %>
+              <%- include('../partials/movie-card', { movie: movie }) %>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <div class="empty-state empty-state--compact">
+            <p>Nothing watched yet. Mark a movie as watched to see it here.</p>
+          </div>
+        <% } %>
+      </section>
+
+      <section class="dashboard-section">
+        <p class="section-tag">Favorite movies</p>
+        <% if (typeof favoriteMovies !== 'undefined' && favoriteMovies.length > 0) { %>
+          <div class="movie-grid">
+            <% favoriteMovies.forEach(function(movie) { %>
+              <%- include('../partials/movie-card', { movie: movie }) %>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <div class="empty-state empty-state--compact">
+            <p>No favorites marked yet.</p>
+          </div>
+        <% } %>
+      </section>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </div>
+</body>
+</html>

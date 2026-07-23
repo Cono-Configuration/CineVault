@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head', { title: typeof title !== 'undefined' ? title : 'Sign up — CineVault' }) %>
+</head>
+<body>
+  <div class="sprocket-rail sprocket-rail--left" aria-hidden="true"></div>
+  <div class="sprocket-rail sprocket-rail--right" aria-hidden="true"></div>
+
+  <div class="page">
+    <%- include('../partials/header') %>
+
+    <main class="section-main section-main--narrow">
+      <div class="page-heading">
+        <h1>Create your vault</h1>
+      </div>
+
+      <% var errs = typeof errors !== 'undefined' ? errors : {}; %>
+      <% var fd = typeof formData !== 'undefined' ? formData : {}; %>
+
+      <% if (errs.general) { %><p class="form-error"><%= errs.general %></p><% } %>
+
+      <form action="/signup" method="POST" class="movie-form">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" value="<%= fd.username || '' %>" required>
+        <% if (errs.username) { %><p class="form-error"><%= errs.username %></p><% } %>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value="<%= fd.email || '' %>" required>
+        <% if (errs.email) { %><p class="form-error"><%= errs.email %></p><% } %>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required minlength="8">
+        <% if (errs.password) { %><p class="form-error"><%= errs.password %></p><% } %>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn--primary">Sign up</button>
+        </div>
+      </form>
+
+      <p class="auth-switch">Already have a vault? <a href="/login">Log in</a></p>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </div>
+</body>
+</html>
