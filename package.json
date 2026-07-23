@@ -1,20 +1,28 @@
 {
-  "name": "filmnest",
+  "name": "cinevault",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Movie library built with Express, EJS, MySQL, and OMDb API.",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "express",
+    "ejs",
+    "mysql",
+    "omdb",
+    "movies",
+    "cinevault"
+  ],
+  "author": "Ayush Purohit",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
     "axios": "^1.18.1",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.4.2",
-    "ejs": "^6.0.1",
+    "ejs": "^3.1.10",
     "express": "^5.2.1",
     "express-session": "^1.19.0",
     "mysql2": "^3.23.1",
