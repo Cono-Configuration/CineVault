@@ -162,7 +162,8 @@ http://localhost:3000
 
 ### Dashboard
 
-<img width="1149" height="639" alt="image" src="https://github.com/user-attachments/assets/693c9983-de55-4200-a4bf-dbfb7a9142a4" 
+<img width="1149" height="639" alt="image" src="https://github.com/user-attachments/assets/693c9983-de55-4200-a4bf-dbfb7a9142a4"/>
+---
 
 <img width="1095" height="551" alt="image" src="https://github.com/user-attachments/assets/ef3cad3d-4d26-4df1-97cf-9351ab05674d" />
   
